@@ -7,7 +7,8 @@ Função para mostrar uma modal desenvolvida na linguagem TL++ (Linguagem propriet
 1. [Definição](#Definição)
 1. [Parametros](#Parametros)
 1. [Compilação](#Compilação)
-    - [Com include](#include)
+    - [Sem include](#sem-include)
+    - [Com include](#com-include)
 1. [Exemplos](#Exemplos)
 
 <br />
@@ -29,12 +30,14 @@ nTypeButton | numérico |1 = Fechar<br>2 = Sim/Não<br>3 = Não/Sim | 1 |
 <br />
 
 ## Compilação
+### Sem include
 Para fazer uso da função como função de usuário padrão, ou seja, utilizando 'U_' antes da chamada, basta compilar o fonte 'msgmodal.tlpp' e usar conforme o exemplo 1.
 
 Ex.:  
 ```tlpp
 U_msgmodal("message", "title", 1)
 ```
+
 
 ### Com include
 Para utilizar a função de forma personalizada sem o uso do 'U_' ou em forma de COMANDOS basta colocar o include 'msgmodal.ch' presente na pasta 'includes/' na sua pasta de includes e usar conforme o exemplo 2.
