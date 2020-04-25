@@ -1,0 +1,109 @@
+#include "protheus.ch"
+
+#define ICON_SUCCESS "FWSKIN_SUCCES_ICO.PNG"
+#define ICON_ALERT "FWSKIN_ALERT_ICO.PNG"
+#define ICON_ERROR "FWSKIN_ERROR_ICO.PNG"
+#define ICON_INFO "FWSKIN_INFO_ICO.PNG"
+
+#define BUTTON_CLOSE 1
+#define BUTTON_YESNO 2
+#define BUTTON_NOYES 3
+
+/*/{Protheus.doc} msgmodal
+Função capaz de substituir as rotinas padrões 'msgalert', 'msgstop', 'msginfo', 'msgyesno', 'msgnoyes', além de acresentar
+a opção de mensagem de sucesso, com o icone correspondente. 
+
+@author Gabriel Hegler Klok - Editado do repositório https://github.com/AlencarGabriel/advpl-MsgTimer
+
+@type user function
+@since 2020/04
+@version 1.0
+
+@param cMessage, character, Mensagem que será exibida na modal.
+@param cTitle, character, Titulo que será usado na modal.
+@param nTypeIcon, numeric, Indicação do tipo de icone que será usado ao qual saberemos o tipo de modal (sucesso, alerta, erro, informação).
+@param nTypeButton, numeric, Indicação do tipo de botão para fechar modal.
+
+@return lReturn, logical, Indica o retorno da modal de acordo com o tipo de botão selecionado e posteriormente clicado.
+/*/
+user function msgmodal(cMessage as character, cTitle as character, nTypeIcon as numeric, nTypeButton as numeric)
+    local oTFontTitle as object 
+    local oTFontMessage as object 
+    local oModal as object
+    local oIcon as object
+    local oTitle as object 
+    local oMessage as object
+
+    local cIcon as character
+    
+    local nTextWidth as numeric 
+    local nHeightTitle as numeric
+    local nHeightMessage as numeric
+
+    local lReturn as logical
+
+    default cTitle := ""
+    default nTypeIcon := 4
+    default nTypeButton := BUTTON_CLOSE
+
+    do case 
+        case nTypeIcon = 1
+            cIcon := ICON_SUCCESS 
+        case nTypeIcon = 2
+            cIcon := ICON_ALERT
+        case nTypeIcon = 3
+            cIcon := ICON_ERROR
+        case nTypeIcon = 4
+            cIcon := ICON_INFO
+        otherwise 
+            userexception("Invalid param #3. Expected [1|2|3|4]")
+    endcase
+
+    lReturn := nil
+
+    oTFontTitle := tfont():new('Arial Black',, -16,, .t.)
+    oTFontMessage := tfont():new('Arial',, -12,, .f.)
+
+    nTextWidth := int(gettextwidth(0, cMessage))
+    nHeightMessage := ((iif(nTextWidth <= 0, 200, nTextWidth) / 200) * 6) + 6
+    nHeightMessage += len(strtokarr2(cMessage, chr(13), .f.)) * 6
+
+    nTextWidth := int(gettextwidth(0, cTitle))
+    nHeightTitle := ((iif(nTextWidth <= 0, 200, nTextWidth) / 200) * 12) + 12
+    nHeightTitle += len(strtokarr2(cTitle, chr(13), .f.)) * 12
+
+    oModal := fwdialogmodal():new()
+    oModal:setescclose(.f.)
+    oModal:setclosebutton(.f.)
+    oModal:setbackground(.f.)
+    oModal:setsize( iif((nHeightTitle + nHeightMessage) <= 57, 97, 040 + nHeightTitle + nHeightMessage), 253 )
+    oModal:createdialog()
+
+    do case 
+        case nTypeButton == BUTTON_CLOSE
+            oModal:addclosebutton(nil, "Fechar")
+        case nTypeButton == BUTTON_YESNO
+            oModal:addyesnobutton()
+        case nTypeButton == BUTTON_NOYES
+            oModal:addnoyesbutton()
+        otherwise 
+            userexception("Invalid param #4. Expected [1|2|3]")
+    endcase 
+
+    oIcon := tbitmap():new(10, 10, 25, 25,, cIcon, .t., oModal:getpanelmain(), {|| nil},, .f., .f.,,, .f.,, .t.,, .f.)
+    oIcon:lautosize := .t.
+
+    oTitle := tsay():new(10, 45, {|| cTitle}, oModal:getpanelmain(),, oTFontTitle,,,, .t., rgb(105, 105, 105),, 200, nHeightTitle,,,,,, .t.)
+    oTitle:lwordwrap := .t. 
+
+    oMessage := tsay():new(10 + nHeightTitle, 45, {|| cMessage}, oModal:getpanelmain(),, oTFontMessage,,,, .t., rgb(105, 105, 105),, 200, nHeightMessage,,,,,, .t.)
+    oMessage:lwordwrap := .t. 
+
+    oModal:activate()
+
+    if nTypeButton == BUTTON_YESNO .or. nTypeButton == BUTTON_NOYES
+        lReturn := iif(oModal:getbuttonselected() = 1, .t., .f.)
+    endif 
+
+    freeobj(oModal)
+return lReturn

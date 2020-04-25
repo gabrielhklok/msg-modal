@@ -1,0 +1,20 @@
+#include "protheus.ch"
+#include "msgmodal.ch"
+
+/*/{Protheus.doc} ex2msgmodal
+Exemplo 2 usando todos os tipos de icones e botões, porém fazendo uso do include 'msgmodal.ch'.
+
+@type user function
+@since 2020/04
+@version 1.0
+/*/
+user function ex2msgmodal()
+    /* Exemplo de modal de sucesso */
+    msgmodal("Sucesso", "Ex2 - Sucesso", 1, 1)
+
+    /* Exemplo de modal sucesso utilizando COMANDO */
+    MSG "Sucesso com COMANDO" TITLE "Ex2 - Sucesso CMD" ICON 1
+
+    /* Exemplo de modal SIM/NÃO foco no SIM COMANDO */
+    MSG "Botão SIM/NÃO COMANDO" TITLE "Ex2 - Botão SIM/NÃO CMD" ICON 4 BUTTON 2
+return 

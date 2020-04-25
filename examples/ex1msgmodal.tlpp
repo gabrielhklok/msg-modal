@@ -1,0 +1,28 @@
+#include "protheus.ch"
+
+/*/{Protheus.doc} ex1msgmodal
+Exemplo 1 usando todos os tipos de icones e botões.
+
+@type user function
+@since 2020/04
+@version 1.0
+/*/
+user function ex1msgmodal()
+    /* Exemplo de modal de sucesso */
+    u_msgmodal("Sucesso", "Ex1 - Sucesso", 1)
+
+    /* Exemplo de modal de alerta */
+    u_msgmodal("Alerta", "Ex1 - Alerta", 2)
+
+    /* Exemplo de modal de erro */
+    u_msgmodal("Erro", "Ex1 - Erro", 3)
+
+    /* Exemplo de modal de informação */
+    u_msgmodal("Informação", "Ex1 - Informação", 4)
+
+    /* Exemplo de modal botão SIM/NÃO foco no SIM */
+    u_msgmodal("Teste botão SIM/NÃO foco no SIM", "Ex1 - Botão SIM/NÃO",, 2)
+
+    /* Exemplo de modal botão NÃO/SIM foco no NÃO */
+    u_msgmodal("Teste botão NÃO/SIM foco no NÃO", "Ex1 - Botão NÃO/SIM",, 3)
+return 
