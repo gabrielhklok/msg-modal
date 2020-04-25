@@ -6,6 +6,7 @@ Função para mostrar uma modal desenvolvida na linguagem TL++ (Linguagem propriet
 
 1. [Definição](#Definição)
 1. [Parametros](#Parametros)
+1. [Retorno](#Retorno)
 1. [Compilação](#Compilação)
     - [Sem include](#sem-include)
     - [Com include](#com-include)
@@ -26,6 +27,16 @@ cMessage | caracter | Texto | | x
 cTitle | caracter | Texto | " " |
 nTypeIcon | numérico |1 = Sucesso<br>2 = Alerta<br>3 = Erro<br>4 = Informação | 4 |
 nTypeButton | numérico |1 = Fechar<br>2 = Sim/Não<br>3 = Não/Sim | 1 |
+
+<br />
+
+## Retorno
+Retorno baseado no parametro 'nTypeButton'
+Valor | Botão | Retorno
+:-------------:|:-------------:|:-------------:
+1 | Fechar | nil
+2 | Sim/Não<br>Foco no SIM | Sim = .t.<br>Não = .f.
+2 | Não/Sim<br>Foco no NÃO | Sim = .t.<br>Não = .f.
 
 <br />
 
