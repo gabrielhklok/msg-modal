@@ -1,48 +1,48 @@
-# msg-modal
+# tlpp-msg-modal
 
-FunÁ„o para mostrar uma modal desenvolvida na linguagem TL++ (Linguagem propriet·ria da TOTVS).
+Fun√ß√£o para mostrar uma modal desenvolvida na linguagem TL++ (Linguagem propriet√°ria da TOTVS).
 
 <br />
 
-1. [DefiniÁ„o](#DefiniÁ„o)
+1. [Defini√ß√£o](#Defini√ß√£o)
 1. [Parametros](#Parametros)
 1. [Retorno](#Retorno)
-1. [CompilaÁ„o](#CompilaÁ„o)
+1. [Compila√ß√£o](#Compila√ß√£o)
     - [Sem include](#sem-include)
     - [Com include](#com-include)
 1. [Exemplos](#Exemplos)
 
 <br />
 
-## DefiniÁ„o
-FunÁ„o destinada a substituir funÁıes padrıes TOTVS Protheus como 'msginfo', 'msgstop', 'msgalert', 'msgyesno', 'msgnoyes', alÈm de implementar um modal com Ìcone de sucesso. … de conhecimento que j· existem funÁıes padrıes que executam as funÁıes acima citadas, entre tanto s„o funÁıes separadas e n„o possuem o Ìcone de sucesso, atravÈs da funÁ„o aqui desenvolvida podemos centralizar as mensagem modal e manter a aparencia do sistema padr„o.
+## Defini√ß√£o
+Fun√ß√£o destinada a substituir fun√ß√µes padr√µes TOTVS Protheus como 'msginfo', 'msgstop', 'msgalert', 'msgyesno', 'msgnoyes', al√©m de implementar um modal com √≠cone de sucesso. √â de conhecimento que j√° existem fun√ß√µes padr√µes que executam as fun√ß√µes acima citadas, entre tanto s√£o fun√ß√µes separadas e n√£o possuem o √≠cone de sucesso, atrav√©s da fun√ß√£o aqui desenvolvida podemos centralizar as mensagem modal e manter a aparencia do sistema padr√£o.
 
 <br />
 
 ## Parametros
-Confira abaixo as valores possÌveis assim como as regras de obrigatoriedade.
-Par‚metro | Tipo | Valores possÌveis | Valor default | ObrigatÛrio
+Confira abaixo as valores poss√≠veis assim como as regras de obrigatoriedade.
+Par√¢metro | Tipo | Valores poss√≠veis | Valor default | Obrigat√≥rio
 :-------------:|:-------------:|:-------------:|:-------------:|:-------------:
 cMessage | caracter | Texto | | x
 cTitle | caracter | Texto | " " |
-nTypeIcon | numÈrico |1 = Sucesso<br>2 = Alerta<br>3 = Erro<br>4 = InformaÁ„o | 4 |
-nTypeButton | numÈrico |1 = Fechar<br>2 = Sim/N„o<br>3 = N„o/Sim | 1 |
+nTypeIcon | num√©rico |1 = Sucesso<br>2 = Alerta<br>3 = Erro<br>4 = Informa√ß√£o | 4 |
+nTypeButton | num√©rico |1 = Fechar<br>2 = Sim/N√£o<br>3 = N√£o/Sim | 1 |
 
 <br />
 
 ## Retorno
 Retorno baseado no parametro 'nTypeButton'
-Valor | Bot„o | Retorno
+Valor | Bot√£o | Retorno
 :-------------:|:-------------:|:-------------:
 1 | Fechar | nil
-2 | Sim/N„o<br>Foco no SIM | Sim = .t.<br>N„o = .f.
-2 | N„o/Sim<br>Foco no N√O | Sim = .t.<br>N„o = .f.
+2 | Sim/N√£o<br>Foco no SIM | Sim = .t.<br>N√£o = .f.
+2 | N√£o/Sim<br>Foco no N√ÉO | Sim = .t.<br>N√£o = .f.
 
 <br />
 
-## CompilaÁ„o
+## Compila√ß√£o
 ### Sem include
-Para fazer uso da funÁ„o como funÁ„o de usu·rio padr„o, ou seja, utilizando 'U_' antes da chamada, basta compilar o fonte 'msgmodal.tlpp' e usar conforme o [exemplo 1](examples/ex1msgmodal.tlpp).
+Para fazer uso da fun√ß√£o como fun√ß√£o de usu√°rio padr√£o, ou seja, utilizando 'U_' antes da chamada, basta compilar o fonte 'msgmodal.tlpp' e usar conforme o [exemplo 1](examples/ex1msgmodal.tlpp).
 
 Ex.:  
 ```tlpp
@@ -51,9 +51,9 @@ U_msgmodal("message", "title", 1)
 
 
 ### Com include
-Para utilizar a funÁ„o de forma personalizada sem o uso do 'U_' ou em forma de COMANDOS basta colocar o include '[msgmodal.ch](includes/msgmodal.ch)' presente na pasta 'includes/' na sua pasta de includes e usar conforme o [exemplo 2](examples/ex2msgmodal.tlpp).
+Para utilizar a fun√ß√£o de forma personalizada sem o uso do 'U_' ou em forma de COMANDOS basta colocar o include '[msgmodal.ch](includes/msgmodal.ch)' presente na pasta 'includes/' na sua pasta de includes e usar conforme o [exemplo 2](examples/ex2msgmodal.tlpp).
 
-Ex. funÁ„o: 
+Ex. fun√ß√£o: 
 ```tlpp
 msgmodal("message", "title", 1, 1)
 ```
@@ -66,25 +66,25 @@ MSG "message" TITLE "title" ICON 1 BUTTON 1
 
 ## Exemplos
 
-Modal com Ìcone de sucesso.<br />
+Modal com √≠cone de sucesso.<br />
 ![msgmodal-sucess](assets/msgmodal-sucess.png)
 <br />
 
-Modal com Ìcone de alerta.<br />
+Modal com √≠cone de alerta.<br />
 ![msgmodal-alert](assets/msgmodal-alert.png)
 <br />
 
-Modal com Ìcone de erro.<br />
+Modal com √≠cone de erro.<br />
 ![msgmodal-error](assets/msgmodal-error.png)
 <br />
 
-Modal com Ìcone de informaÁ„o.<br />
+Modal com √≠cone de informa√ß√£o.<br />
 ![msgmodal-info](assets/msgmodal-info.png)
 <br />
 
-Modal com botıes SIM/N„o com foco no SIM.<br />
+Modal com bot√µes SIM/N√£o com foco no SIM.<br />
 ![msgmodal-yesno](assets/msgmodal-yesno.png)
 <br />
 
-Modal com botıes N√O/SIM com foco no N√O.<br />
+Modal com bot√µes N√ÉO/SIM com foco no N√ÉO.<br />
 ![msgmodal-noyes](assets/msgmodal-noyes.png)
